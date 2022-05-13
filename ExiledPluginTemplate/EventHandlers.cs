@@ -1,5 +1,6 @@
 ﻿// Usings
 using System.Collections.Generic;
+using Exiled.API.Enums;
 using Exiled.API.Features;
 using Exiled.Events.EventArgs;
 
@@ -27,6 +28,14 @@ namespace ExiledPluginTemplate
             {
                 ev.IsTriggerable = false; // The Role indicated in the list dont going to trigger the tesla
                 ev.IsInIdleRange = false; // The Role indicated in the list dont going to activate the tesla
+            }
+        }
+
+        public void OnPickingUpItem(PickingUpItemEventArgs ev) // PickingUpItem event (Referenced on MainClass.cs/OnEnabled and OnDisabled)
+        {
+            if (ev.Player.CurrentRoom.Type == RoomType.Pocket) // If the CurrentRoom of the player is PocketDimension
+            {
+                ev.IsAllowed = false;
             }
         }
 

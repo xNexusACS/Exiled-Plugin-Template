@@ -34,6 +34,7 @@ namespace ExiledPluginTemplate
             
             ServerHandler.RoundStarted += ev.OnRoundStarted; // Subscribing the event RoundStarted
             PlayerHandler.TriggeringTesla += ev.OnTriggeringTesla; // Subscribing the event TriggeringTesla
+            PlayerHandler.PickingUpItem += ev.OnPickingUpItem; // Subscribing the event PickingUpItem
             
             base.OnEnabled();
             CustomItemRegister(); // Register All CustomItems in this plugin
@@ -44,6 +45,7 @@ namespace ExiledPluginTemplate
         {
             ServerHandler.RoundStarted -= ev.OnRoundStarted; // Unsubscribing the event RoundStarted
             PlayerHandler.TriggeringTesla -= ev.OnTriggeringTesla; // Unsubscribing the event TriggeringTesla
+            PlayerHandler.PickingUpItem -= ev.OnPickingUpItem; // Unsubscribing the event PickingUpItem
 
             ev = null;
             h.UnpatchAll(); // Unpatch all patches created on this plugin
