@@ -4,6 +4,7 @@ using System;
 using Exiled.CustomItems.API;
 using Exiled.CustomRoles.API;
 using HarmonyLib;
+using PlayerRoles;
 
 // To shorten the use of the event class
 using ServerHandler = Exiled.Events.Handlers.Server;
@@ -18,10 +19,12 @@ namespace ExiledPluginTemplate
         public override string Name { get; } = "ExiledPluginTemplate"; // Name of the plugin (Name to show when Exiled load it)
         public override string Prefix { get; } = "exiled_plugin_template"; // Name to show on your config file (EXILED/Configs/yourport-config.yml)
         public override Version Version { get; } = new Version(0, 1, 0); // Version of the plugin (Version to show when Exiled load it)
-        public override Version RequiredExiledVersion { get; } = new Version(5, 2, 1); // Version of Exiled required to load the plugin
+        public override Version RequiredExiledVersion { get; } = new Version(6, 0, 0); // Version of Exiled required to load the plugin
 
         private static ExampleCustomItem exCI; // Referencing the ExampleCustomItem and creating a prefix for it
         private static ExampleCustomRole exCR; // Referencing the ExampleCustomRole and creating a prefix for it
+
+        public static MainClass Instance; // Creating a new static variable for this class to allow us the config access from other classes
         
         private Harmony h { get; set; } // Referencing HarmonyLib, Used to Patch (See ExamplePatch.cs)
 
@@ -29,6 +32,7 @@ namespace ExiledPluginTemplate
         
         public override void OnEnabled() // Code to execute when the plugin is enabled (Can be events, methods etc)
         {
+            Instance = this; // Initializing the Instance variable
             ev = new EventHandlers(this); // Small Constructor (See EventHandlers.cs)
             h.PatchAll(); // Patch all patches created on this plugin
             
@@ -48,6 +52,7 @@ namespace ExiledPluginTemplate
             PlayerHandler.PickingUpItem -= ev.OnPickingUpItem; // Unsubscribing the event PickingUpItem
 
             ev = null;
+            Instance = null;
             h.UnpatchAll(); // Unpatch all patches created on this plugin
             base.OnDisabled();
         }
@@ -60,7 +65,7 @@ namespace ExiledPluginTemplate
 
         private static void CustomRoleRegister()
         {
-            exCR = new ExampleCustomRole {Role = RoleType.ClassD};
+            exCR = new ExampleCustomRole {Role = RoleTypeId.ClassD};
             exCR.Register(); // Register the Example Custom Role
         }
     }

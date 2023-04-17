@@ -3,8 +3,8 @@ using Exiled.CustomItems.API.Features;
 using Exiled.API.Features.Attributes;
 using Exiled.API.Features.Spawn;
 using System.Collections.Generic;
-using Exiled.CustomItems.API;
-using Exiled.Events.EventArgs;
+using Exiled.API.Enums;
+using Exiled.Events.EventArgs.Player;
 
 // To shorten the use of the event class
 using Item_PlayerHandler = Exiled.Events.Handlers.Player;
@@ -28,7 +28,7 @@ namespace ExiledPluginTemplate
             {
                 new DynamicSpawnPoint
                 {
-                    Location = SpawnLocation.Inside914, // Where the CustomItem going to be spawned
+                    Location = SpawnLocationType.Inside914, // Where the CustomItem going to be spawned
                     Chance = 100 // Chance of Spawn
                 }
             }

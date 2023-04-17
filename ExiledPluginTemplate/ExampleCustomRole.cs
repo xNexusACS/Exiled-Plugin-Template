@@ -4,19 +4,21 @@ using Exiled.API.Features.Attributes;
 using Exiled.API.Features.Spawn;
 using System.Collections.Generic;
 using Exiled.Events.EventArgs;
+using Exiled.Events.EventArgs.Player;
+using PlayerRoles;
 
 // To shorten the use of the event class
 using Role_PlayerHandler = Exiled.Events.Handlers.Player;
 
 namespace ExiledPluginTemplate
 {
-    [CustomRole(RoleType.ClassD)] // Role to serialize
+    [CustomRole(RoleTypeId.ClassD)] // Role to serialize
     public class ExampleCustomRole : CustomRole // Tells EXILED that is a CustomRole class
     {
         public override string Name { get; set; } = "Example"; // Name of the CustomRole
         public override string Description { get; set; } = "Example CustomRole"; // Description of the CustomRole
         public override uint Id { get; set; } = 30; // Id of the CustomRole (Recommended to put it in the Config File to avoid conflicts with other plugins)
-        public override RoleType Role { get; set; } = RoleType.ClassD;
+        public override RoleTypeId Role { get; set; } = RoleTypeId.ClassD;
         public override int MaxHealth { get; set; } = 200; // Max Health of the CustomRole
         public override string CustomInfo { get; set; } = "Example CustomInfo"; // CustomInfo for the CustomRole
 
@@ -30,7 +32,7 @@ namespace ExiledPluginTemplate
                 new RoleSpawnPoint
                 {
                     Chance = 100, // Chance of Spawn
-                    Role = RoleType.ClassD // Where the CustomRole going to be spawned
+                    Role = RoleTypeId.ClassD // Where the CustomRole going to be spawned
                 }
             }
         };

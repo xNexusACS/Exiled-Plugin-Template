@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using Exiled.API.Enums;
 using Exiled.API.Features;
-using Exiled.Events.EventArgs;
+using Exiled.Events.EventArgs.Player;
+using PlayerRoles;
 
 namespace ExiledPluginTemplate
 {
@@ -40,15 +41,14 @@ namespace ExiledPluginTemplate
         }
 
         // List of RoleTypes used in the OnTriggeringTesla Method (Static methods can be accessed without making a constructor or referencing it)
-        private static List<RoleType> ScpList { get; } = new List<RoleType>
+        private static List<RoleTypeId> ScpList { get; } = new List<RoleTypeId>
         {
-            RoleType.Scp106,
-            RoleType.Scp049,
-            RoleType.Scp096,
-            RoleType.Scp173,
-            RoleType.Scp0492,
-            RoleType.Scp93953,
-            RoleType.Scp93989
+            RoleTypeId.Scp106,
+            RoleTypeId.Scp049,
+            RoleTypeId.Scp096,
+            RoleTypeId.Scp173,
+            RoleTypeId.Scp0492,
+            RoleTypeId.Scp939
         };
     }
 }
